@@ -10,7 +10,7 @@ export default defineComponent({
     data: { type: Object },
     columns: { type: Object as PropType<Array<Column>> },
   },
-  setup() {
+  setup(props, { emit, slots }) {
     return (
       <div>
         <Header></Header>
