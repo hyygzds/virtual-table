@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "noEmit": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
@@ -17,32 +18,23 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["vitest/globals", "@types/jest"],
+    "types": ["vitest/globals"],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./components/*"],
-      "@farris/ui-vue/components/*": ["./components/*"]
+      "@/*": ["./*"]
     }
   },
-  "include": [
-    "components/**/*",
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "designer/**/*"
-  ],
-  "files": [],
+  "include": ["components/**/*"],
+  // "files": [],
   "references": [
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
-    }
+    // {
+    //   "path": "./tsconfig.node.json"
+    // },
+    // {
+    //   "path": "./tsconfig.app.json"
+    // },
+    // {
+    //   "path": "./tsconfig.vitest.json"
+    // }
   ]
 }
