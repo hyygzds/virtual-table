@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import VirtualTable from '@/components/virtual-table'
 </script>
 
 <template>

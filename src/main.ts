@@ -10,6 +10,7 @@ import HVirtualTable from '@/components/virtual-table';
 
 const app = createApp(App);
 
+app.use(HVirtualTable);
 app.use(createPinia());
 app.use(router);
 
