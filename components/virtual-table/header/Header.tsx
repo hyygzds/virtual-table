@@ -7,7 +7,7 @@ export default defineComponent({
     columns: { type: Object as PropType<Array<TableColumn>> },
   },
   setup(props) {
-    return (
+    return () => (
       <div class="h-table-header">
         {props.columns!.map((column: TableColumn) => {
           return <div key={`header-column-${column.key}`}>{column.name}</div>;

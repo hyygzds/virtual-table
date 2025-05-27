@@ -9,12 +9,19 @@ export default defineComponent({
   props: {
     data: { type: Object },
     columns: { type: Object as PropType<Array<TableColumn>> },
+    keyField: { type: String, default: '' },
   },
-  setup(props, { emit, slots }) {
-    return (
+  setup(props, { slots }) {
+    return () => (
       <div>
-        <Header></Header>
-        <Body></Body>
+        {slots.default ? (
+          slots.default()
+        ) : (
+          <>
+            <Header columns={props.columns}></Header>
+            <Body data={props.data} columns={props.columns}></Body>
+          </>
+        )}
       </div>
     );
   },

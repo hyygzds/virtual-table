@@ -1,9 +1,23 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const data = ref([
+  { id: 'AAA', name: '张三', age: 12 },
+  { id: 'BBB', name: '李四', age: 18 },
+  { id: 'CCC', name: '王五', age: 20 },
+]);
+const columns = ref([
+  { key: 'id', name: '标识' },
+  { key: 'name', name: '名称' },
+  { key: 'age', name: '年龄' }
+])
 </script>
 
 <template>
   <div>
+    <h-virtual-table :data="data" :columns="columns">
 
+    </h-virtual-table>
   </div>
 </template>
 
