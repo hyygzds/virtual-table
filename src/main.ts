@@ -6,11 +6,11 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router';
 
-import HVirtualTable from '@/components/virtual-table';
+import HComponent from '@/components';
 
 const app = createApp(App);
 
-app.use(HVirtualTable);
+app.use(HComponent);
 app.use(createPinia());
 app.use(router);
 

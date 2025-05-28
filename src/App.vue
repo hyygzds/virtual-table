@@ -15,8 +15,20 @@ const columns = ref([
 
 <template>
   <div>
-    <h-virtual-table :data="data" :columns="columns">
 
+
+    <h-virtual-table :data="data">
+      <template #default="{ row }">
+        <h-table-column id="id" name="标识">
+          {{ row['id'] }}
+        </h-table-column>
+        <h-table-column id="name" name="名称">
+          {{ row['name'] }}
+        </h-table-column>
+        <h-table-column id="age" name="年龄">
+          {{ row['age'] }}
+        </h-table-column>
+      </template>
     </h-virtual-table>
   </div>
 </template>

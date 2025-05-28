@@ -9,7 +9,7 @@ export default defineComponent({
   setup(props) {
     return () => (
       <div class="h-table-header">
-        {props.columns!.map((column: TableColumn) => {
+        {(props.columns || []).map((column: TableColumn) => {
           return <div key={`header-column-${column.key}`}>{column.name}</div>;
         })}
       </div>

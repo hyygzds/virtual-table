@@ -1,8 +1,9 @@
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, ref, onMounted, provide } from 'vue';
 import { TableColumn } from './type';
 import Header from './header/Header';
 import Body from './body/Body';
 import './table.css';
+import { VIRTUAL_TABLE } from '../common/symbol-key';
 
 export default defineComponent({
   name: 'HVirtualTable',
@@ -12,15 +13,17 @@ export default defineComponent({
     keyField: { type: String, default: '' },
   },
   setup(props, { slots }) {
+    const columns = ref(props.columns || []);
+    provide(VIRTUAL_TABLE, { columns });
+    onMounted(() => {});
+    // columns.value =
     return () => (
       <div>
+        <Header columns={columns.value}></Header>
         {slots.default ? (
-          slots.default()
+          props.data!.map((dataItem: any) => <div>{slots.default!({ row: dataItem })}</div>)
         ) : (
-          <>
-            <Header columns={props.columns}></Header>
-            <Body data={props.data} columns={props.columns}></Body>
-          </>
+          <Body data={props.data} columns={columns.value}></Body>
         )}
       </div>
     );
