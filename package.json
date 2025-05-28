@@ -13,7 +13,8 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "build:lib": "node ./scripts/build.js"
+    "build:lib": "node ./scripts/build.js",
+    "build:webpack": "node ./webpack/webpack.config.js"
   },
   "dependencies": {
     "pinia": "^3.0.1",
@@ -46,6 +47,7 @@
     "fs-extra": "^11.2.0",
     "lodash-es": "^4.17.11",
     "@vue/babel-plugin-jsx": "^1.2.3",
-    "@vitejs/plugin-vue-jsx": "^4.0.0"
+    "@vitejs/plugin-vue-jsx": "^4.0.0",
+    "ts-loader": "^8.0.0"
   }
 }
