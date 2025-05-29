@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "noEmit": true,
+    "noEmit": false,
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
@@ -24,7 +24,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["components/**/*", "src/**/*"],
+  "include": ["components/**/*"],
   // "files": [],
   "references": [
     // {
