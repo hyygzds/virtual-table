@@ -1,14 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { fileURLToPath } = require('node:url');
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { dirname, resolve } = require('node:path');
-
-// const __dirname = dirname(fileURLToPath(import.meta.url));
+import { resolve } from 'path';
+// const { resolve } = require('node:path');
+// const path = require('node:path');
 module.exports = {
   mode: 'development',
   entry: resolve(__dirname, '../components/index.ts'),
   output: {
-    path: resolve(__dirname, 'dist'),
+    path: resolve(__dirname, './webpack/dist'),
     filename: 'index.js',
   },
   resolve: {

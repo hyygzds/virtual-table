@@ -2,7 +2,7 @@ import { defineComponent, PropType, ref, onMounted, provide } from 'vue';
 import { TableColumn } from './type';
 import Header from './header/Header';
 import Body from './body/Body';
-import './table.css';
+// import './table.css';
 import { VIRTUAL_TABLE } from '../common/symbol-key';
 
 export default defineComponent({
