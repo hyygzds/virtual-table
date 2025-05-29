@@ -8,17 +8,17 @@ module.exports = {
   // entry: path.resolve(__dirname, './components/index.ts'),
   entry: './components/index.ts',
   output: {
-    path: path.resolve(__dirname, './webpack/dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'index.js',
-    library: {
-      name: 'indexAA',
-      type: 'umd',
-    },
+    // library: {
+    //   name: 'indexAA',
+    //   type: 'umd',
+    // },
     clean: true,
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './'),
+      '@': path.resolve(__dirname, '../'),
     },
     extensions: ['.ts', '.tsx', '.js'],
   },

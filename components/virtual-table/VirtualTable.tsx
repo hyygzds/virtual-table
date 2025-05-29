@@ -10,11 +10,14 @@ export default defineComponent({
   props: {
     data: { type: Object },
     columns: { type: Object as PropType<Array<TableColumn>> },
+    // 显示行号
+    showRowIndex: { type: Boolean, default: false },
+    // 行数据标识属性
     keyField: { type: String, default: '' },
   },
   setup(props, { slots }) {
     const columns = ref(props.columns || []);
-    provide(VIRTUAL_TABLE, { columns });
+    provide(VIRTUAL_TABLE, { columns, tableContext: props });
     onMounted(() => {});
     // columns.value =
     return () => (

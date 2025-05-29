@@ -10,8 +10,8 @@ export default defineComponent({
   },
   setup(props) {
     return () =>
-      props.data!.map((dataItem: any) => {
-        return <TableRow data={dataItem} columns={props.columns}></TableRow>;
+      props.data!.map((dataItem: any, index: number) => {
+        return <TableRow data={dataItem} columns={props.columns} index={index}></TableRow>;
       });
   },
 });
