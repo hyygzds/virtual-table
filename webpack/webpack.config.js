@@ -49,5 +49,12 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks(chunk) {
+        return chunk.name !== 'vue';
+      },
+    },
+  },
   plugins: [new VueLoaderPlugin()],
 };
