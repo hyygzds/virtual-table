@@ -15,8 +15,7 @@ const columns = ref([
 
 <template>
   <div>
-
-
+    列模板:
     <h-virtual-table :data="data">
       <template #default="{ row }">
         <h-table-column id="id" name="标识">
@@ -29,6 +28,9 @@ const columns = ref([
           {{ row['age'] }}
         </h-table-column>
       </template>
+    </h-virtual-table>
+    <h-virtual-table :data="data" :columns="columns">
+
     </h-virtual-table>
   </div>
 </template>
