@@ -1,5 +1,5 @@
 import { defineComponent, PropType, ref, onMounted, provide } from 'vue';
-import { TableColumn } from './type';
+import { DataItem, TableColumn } from './type';
 import Header from './header/Header';
 import Body from './body/Body';
 // import './table.css';
@@ -24,7 +24,7 @@ export default defineComponent({
       <div>
         <Header columns={columns.value}></Header>
         {slots.default ? (
-          props.data!.map((dataItem: any) => <div>{slots.default!({ row: dataItem })}</div>)
+          props.data!.map((dataItem: DataItem) => <div>{slots.default!({ row: dataItem })}</div>)
         ) : (
           <Body data={props.data} columns={columns.value}></Body>
         )}

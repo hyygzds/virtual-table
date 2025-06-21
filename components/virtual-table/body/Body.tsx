@@ -1,5 +1,5 @@
 import { defineComponent, PropType } from 'vue';
-import { TableColumn } from '../type';
+import { DataItem, TableColumn } from '../type';
 import TableRow from '../row/Row';
 
 export default defineComponent({
@@ -10,7 +10,7 @@ export default defineComponent({
   },
   setup(props) {
     return () =>
-      props.data!.map((dataItem: any, index: number) => {
+      props.data!.map((dataItem: DataItem, index: number) => {
         return <TableRow data={dataItem} columns={props.columns} index={index}></TableRow>;
       });
   },
