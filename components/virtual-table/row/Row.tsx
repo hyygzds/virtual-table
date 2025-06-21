@@ -1,6 +1,7 @@
 import { defineComponent, inject, PropType } from 'vue';
 import { TableColumn } from '../type';
-import { TableContext, VIRTUAL_TABLE } from '@/components/common/symbol-key';
+import { TableContext, VIRTUAL_TABLE } from '../VirtualTable';
+import TableCell from '../cell/Cell';
 
 export default defineComponent({
   name: 'TableRow',
@@ -17,8 +18,8 @@ export default defineComponent({
           <input type="checkbox" />
         </div>
         {rootProps.showLineNumber && <div>{props.index + 1}</div>}
-        {props.columns!.map((column: TableColumn) => {
-          return <div>{props.data![column.key]}</div>;
+        {props.columns!.map((column: TableColumn, index: number) => {
+          return <TableCell data={props.data} column={column} index={index}></TableCell>;
         })}
       </div>
     );

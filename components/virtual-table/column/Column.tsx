@@ -1,6 +1,6 @@
-import { TableContext, VIRTUAL_TABLE } from '@/components/common/symbol-key';
 import { defineComponent, inject } from 'vue';
 import { TableColumn } from '../type';
+import { TableContext, VIRTUAL_TABLE } from '../VirtualTable';
 
 export default defineComponent({
   name: 'HTableColumn',

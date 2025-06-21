@@ -1,9 +1,17 @@
-import { defineComponent, PropType, ref, onMounted, provide, ExtractPropTypes } from 'vue';
+import {
+  defineComponent,
+  PropType,
+  ref,
+  onMounted,
+  provide,
+  ExtractPropTypes,
+  Ref,
+  InjectionKey,
+} from 'vue';
 import { DataItem, TableColumn } from './type';
 import Header from './header/Header';
 import Body from './body/Body';
 import './table.css';
-import { VIRTUAL_TABLE } from '../common/symbol-key';
 
 export const tableProps = {
   data: { type: Object },
@@ -18,6 +26,12 @@ export const tableProps = {
 
 export type TableProps = ExtractPropTypes<typeof tableProps>;
 
+export type TableContext = {
+  rootProps: TableProps;
+  columns: Ref<TableColumn[]>;
+};
+
+export const VIRTUAL_TABLE: InjectionKey<TableContext> = Symbol('VirtualTable');
 export default defineComponent({
   name: 'HVirtualTable',
   props: tableProps,
