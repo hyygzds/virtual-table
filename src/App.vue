@@ -11,10 +11,15 @@ const columns = ref([
   { key: 'name', name: '名称' },
   { key: 'age', name: '年龄' }
 ])
+const showLineNumberVar = ref(false);
+function showLineNumber() {
+  showLineNumberVar.value = !showLineNumberVar.value;
+}
 </script>
 
 <template>
   <div>
+    <button @click="showLineNumber">切换显示行号</button>
     列模板:
     <h-virtual-table :data="data">
       <template #default="{ row }">
@@ -29,7 +34,7 @@ const columns = ref([
         </h-table-column>
       </template>
     </h-virtual-table>
-    <h-virtual-table :data="data" :columns="columns">
+    <h-virtual-table :showLineNumber="showLineNumberVar" :data="data" :columns="columns">
 
     </h-virtual-table>
   </div>

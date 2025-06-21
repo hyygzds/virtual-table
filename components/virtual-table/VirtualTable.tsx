@@ -1,23 +1,29 @@
-import { defineComponent, PropType, ref, onMounted, provide } from 'vue';
+import { defineComponent, PropType, ref, onMounted, provide, ExtractPropTypes } from 'vue';
 import { DataItem, TableColumn } from './type';
 import Header from './header/Header';
 import Body from './body/Body';
-// import './table.css';
+import './table.css';
 import { VIRTUAL_TABLE } from '../common/symbol-key';
+
+export const tableProps = {
+  data: { type: Object },
+  columns: { type: Object as PropType<Array<TableColumn>> },
+  // 显示行号
+  showLineNumber: { type: Boolean, default: false },
+  // 多选配置
+  selection: { type: Object, default: () => {} },
+  // 行数据标识属性
+  keyField: { type: String, default: '' },
+};
+
+export type TableProps = ExtractPropTypes<typeof tableProps>;
 
 export default defineComponent({
   name: 'HVirtualTable',
-  props: {
-    data: { type: Object },
-    columns: { type: Object as PropType<Array<TableColumn>> },
-    // 显示行号
-    showRowIndex: { type: Boolean, default: false },
-    // 行数据标识属性
-    keyField: { type: String, default: '' },
-  },
+  props: tableProps,
   setup(props, { slots }) {
     const columns = ref(props.columns || []);
-    provide(VIRTUAL_TABLE, { columns, tableContext: props });
+    provide(VIRTUAL_TABLE, { columns, rootProps: props });
     onMounted(() => {});
     // columns.value =
     return () => (
