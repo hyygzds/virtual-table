@@ -36,7 +36,7 @@ export type TableProps = ExtractPropTypes<typeof tableProps>;
 export type TableContext = {
   rootProps: TableProps;
   columns: Ref<TableColumn[]>;
-  selectedRowIdList: Ref<string[]>;
+  selectedRowIdList: Ref<Set<string>>;
 };
 
 export const VIRTUAL_TABLE: InjectionKey<TableContext> = Symbol('VirtualTable');
@@ -45,8 +45,8 @@ export default defineComponent({
   props: tableProps,
   setup(props, { slots }) {
     const columns = ref(props.columns || []);
-    // 选中行集合
-    const selectedRowIdList = ref([]);
+    // 选中行集合,使用set保持唯一性
+    const selectedRowIdList: Ref<Set<string>> = ref(new Set());
     provide(VIRTUAL_TABLE, { columns, rootProps: props, selectedRowIdList });
     onMounted(() => {});
     // columns.value =

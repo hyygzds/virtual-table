@@ -13,7 +13,7 @@ export default defineComponent({
   setup(props) {
     const { rootProps, selectedRowIdList } = inject(VIRTUAL_TABLE) as TableContext;
     const selected = computed(() => {
-      return selectedRowIdList.value.includes(props.data[rootProps.keyField] as string);
+      return selectedRowIdList.value.has(props.data[rootProps.keyField] as string);
     });
     const tableRowClass = computed(() => {
       return {
@@ -24,14 +24,10 @@ export default defineComponent({
     function onClickRow(event: MouseEvent) {
       event.stopPropagation();
       const id = props.data[rootProps.keyField] as string;
-      if (rootProps.selection.multiple) {
-        if (selectedRowIdList.value.includes(id)) {
-          selectedRowIdList.value.push(id);
-        }
-      } else {
-        selectedRowIdList.value.splice(0, selectedRowIdList.value.length);
-        selectedRowIdList.value.push(id);
+      if (!rootProps.selection.multiple) {
+        selectedRowIdList.value.clear();
       }
+      selectedRowIdList.value.add(id);
     }
     return () => (
       <div class={tableRowClass.value} style="display: flex" onClick={onClickRow}>
