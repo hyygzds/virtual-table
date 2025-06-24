@@ -9,12 +9,12 @@ import {
   InjectionKey,
 } from 'vue';
 import { DataItem, TableColumn, TableSelection } from './type';
-import Header from './header/Header';
-import Body from './body/Body';
+import TableHeader from './header/Header';
+import TableBody from './body/Body';
 import './table.css';
 
 export const tableProps = {
-  data: { type: Object },
+  data: { type: Object as PropType<DataItem[]>, default: () => [] },
   columns: { type: Object as PropType<Array<TableColumn>> },
   // 显示行号
   showLineNumber: { type: Boolean, default: false },
@@ -52,11 +52,11 @@ export default defineComponent({
     // columns.value =
     return () => (
       <div>
-        <Header columns={columns.value}></Header>
+        <TableHeader columns={columns.value}></TableHeader>
         {slots.default ? (
-          props.data!.map((dataItem: DataItem) => <div>{slots.default!({ row: dataItem })}</div>)
+          props.data.map((dataItem: DataItem) => <div>{slots.default!({ row: dataItem })}</div>)
         ) : (
-          <Body data={props.data} columns={columns.value}></Body>
+          <TableBody data={props.data} columns={columns.value}></TableBody>
         )}
       </div>
     );
