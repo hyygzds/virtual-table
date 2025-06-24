@@ -1,3 +1,11 @@
 .h-table-header {
   display: flex;
 }
+
+.h-table__row--selected {
+  background-color: aqua;
+}
+
+.h-table__row--hover:hover {
+  background-color: aquamarine;
+}

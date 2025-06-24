@@ -8,7 +8,7 @@ import {
   Ref,
   InjectionKey,
 } from 'vue';
-import { DataItem, TableColumn } from './type';
+import { DataItem, TableColumn, TableSelection } from './type';
 import Header from './header/Header';
 import Body from './body/Body';
 import './table.css';
@@ -19,9 +19,16 @@ export const tableProps = {
   // 显示行号
   showLineNumber: { type: Boolean, default: false },
   // 多选配置
-  selection: { type: Object, default: () => {} },
+  selection: {
+    type: Object as PropType<TableSelection>,
+    default: {
+      multiple: false,
+    },
+  },
   // 行数据标识属性
-  keyField: { type: String, default: '' },
+  keyField: { type: String, default: 'id' },
+  // 自定义行样式
+  // 启用斑马线样式
 };
 
 export type TableProps = ExtractPropTypes<typeof tableProps>;
@@ -29,6 +36,7 @@ export type TableProps = ExtractPropTypes<typeof tableProps>;
 export type TableContext = {
   rootProps: TableProps;
   columns: Ref<TableColumn[]>;
+  selectedRowIdList: Ref<string[]>;
 };
 
 export const VIRTUAL_TABLE: InjectionKey<TableContext> = Symbol('VirtualTable');
@@ -37,7 +45,9 @@ export default defineComponent({
   props: tableProps,
   setup(props, { slots }) {
     const columns = ref(props.columns || []);
-    provide(VIRTUAL_TABLE, { columns, rootProps: props });
+    // 选中行集合
+    const selectedRowIdList = ref([]);
+    provide(VIRTUAL_TABLE, { columns, rootProps: props, selectedRowIdList });
     onMounted(() => {});
     // columns.value =
     return () => (

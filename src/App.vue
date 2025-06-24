@@ -21,7 +21,7 @@ function showLineNumber() {
   <div>
     <button @click="showLineNumber">切换显示行号</button>
     列模板:
-    <h-virtual-table :data="data">
+    <!-- <h-virtual-table :data="data">
       <template #default="{ row }">
         <h-table-column id="id" name="标识">
           {{ row['id'] }}
@@ -33,7 +33,7 @@ function showLineNumber() {
           {{ row['age'] }}
         </h-table-column>
       </template>
-    </h-virtual-table>
+</h-virtual-table> -->
     <h-virtual-table :showLineNumber="showLineNumberVar" :data="data" :columns="columns">
 
     </h-virtual-table>

@@ -12,4 +12,8 @@ interface DataRow {
   raw: DataItem;
 }
 
-export type { DataItem, DataRow, TableColumn };
+interface TableSelection {
+  multiple: boolean;
+}
+
+export type { DataItem, DataRow, TableColumn, TableSelection };
