@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { cloneDeep } from 'lodash-es';
+import { reactive, ref } from 'vue';
 
 const data = ref([
   { id: 'AAA', name: '张三', age: 12 },
@@ -12,8 +13,12 @@ const columns = ref([
   { key: 'age', name: '年龄' }
 ])
 const showLineNumberVar = ref(false);
+const editingData = reactive({});
 function showLineNumber() {
   showLineNumberVar.value = !showLineNumberVar.value;
+}
+function editCell(id: string) {
+  editingData[id] = cloneDeep(data.value.filter((dataItem: any) => dataItem.id === id)[0]);
 }
 </script>
 
@@ -21,10 +26,11 @@ function showLineNumber() {
   <div>
     <button @click="showLineNumber">切换显示行号</button>
     列模板:
-    <!-- <h-virtual-table :data="data">
+    <h-virtual-table :data="data">
       <template #default="{ row }">
         <h-table-column id="id" name="标识">
-          {{ row['id'] }}
+          <input type="text" v-model="editingData[row.id].id" v-if="editingData[row.id]">
+          <div v-else @click="editCell(row.id)">{{ row['id'] }}</div>
         </h-table-column>
         <h-table-column id="name" name="名称">
           {{ row['name'] }}
@@ -33,9 +39,6 @@ function showLineNumber() {
           {{ row['age'] }}
         </h-table-column>
       </template>
-</h-virtual-table> -->
-    <h-virtual-table :showLineNumber="showLineNumberVar" :data="data" :columns="columns">
-
     </h-virtual-table>
   </div>
 </template>

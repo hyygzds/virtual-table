@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { cloneDeep } from 'lodash-es';
 import { reactive, ref } from 'vue';
 
 const data = ref([
@@ -16,8 +17,8 @@ const editingData = reactive({});
 function showLineNumber() {
     showLineNumberVar.value = !showLineNumberVar.value;
 }
-function editCell(row: any) {
-
+function editCell(id: string) {
+    editingData[id] = cloneDeep(data.value.filter((dataItem: any) => dataItem.id === id)[0]);
 }
 </script>
 
@@ -28,8 +29,8 @@ function editCell(row: any) {
         <h-virtual-table :data="data">
             <template #default="{ row }">
                 <h-table-column id="id" name="标识">
-                    <input type="text" v-if="editingData[row.id]">
-                    <div v-else>{{ row['id'] }}</div>
+                    <input type="text" v-model="editingData[row.id].id" v-if="editingData[row.id]">
+                    <div v-else @click="editCell(row.id)">{{ row['id'] }}</div>
                 </h-table-column>
                 <h-table-column id="name" name="名称">
                     {{ row['name'] }}
