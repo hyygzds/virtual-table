@@ -7,12 +7,7 @@ const data = ref([
     { id: 'BBB', name: '李四', age: 18 },
     { id: 'CCC', name: '王五', age: 20 },
 ]);
-const columns = ref([
-    { key: 'id', name: '标识' },
-    { key: 'name', name: '名称' },
-    { key: 'age', name: '年龄' },
-    // { key: 'operation', name: '操作' }
-])
+
 const showLineNumberVar = ref(false);
 const editingData = reactive({});
 function showLineNumber() {
