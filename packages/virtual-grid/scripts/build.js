@@ -9,6 +9,7 @@ async function createPackage() {
   packageJsonContent.main = 'index.umd.js';
   packageJsonContent.module = 'index.js';
   packageJsonContent.dependencies = omit(packageJsonContent.dependencies, 'vue');
+  packageJsonContent.types = './types/index.d.ts';
   const fileStr = JSON.stringify(omit(packageJsonContent, 'scripts', 'devDependencies'), null, 2);
   await fsExtra.outputFile(resolve('./dist', `package.json`), fileStr, 'utf-8');
 }

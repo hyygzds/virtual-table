@@ -1,7 +1,10 @@
 {
-  "name": "h-virtual-table",
+  "name": "@hyy/virtual-table",
   "version": "0.0.1",
-  "private": true,
+  "type": "module",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -17,6 +20,7 @@
   },
   "dependencies": {
     "pinia": "^3.0.1",
+    "vite-plugin-dts": "^2.3.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

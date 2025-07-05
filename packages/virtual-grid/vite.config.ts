@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import dts from 'vite-plugin-dts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // https://vite.dev/config/
@@ -25,7 +26,17 @@ export default defineConfig({
       },
     },
   },
-  plugins: [vue(), vueDevTools(), vueJsx()],
+  plugins: [
+    vue(),
+    vueDevTools(),
+    vueJsx(),
+    dts({
+      entryRoot: './components',
+      outputDir: `./dist/types`,
+      noEmitOnError: false,
+      skipDiagnostics: false,
+    }),
+  ],
   resolve: {
     alias: {
       // '@': fileURLToPath(new URL('.', import.meta.url)),
