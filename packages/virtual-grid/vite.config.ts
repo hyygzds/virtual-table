@@ -19,6 +19,8 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       external: ['vue'],
+      // 多入口打包
+      input: {},
       output: {
         globals: {
           vue: 'Vue',
